@@ -1,6 +1,6 @@
 <!-- TEMPLATE -->
 <template>
-<DynamicForm :myObject="foobar" />
+<DynamicForm :schema="ui_schema" />
 </template>
 
 <!-- STYLE -->
@@ -11,19 +11,35 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import DynamicForm from './components/DynamicForm.vue'
-import type { UI_schema_property } from './types/ui-schema';
+import type { UISchema } from './types/ui-schema';
 
-
-function foo(e:Event){
-  console.log(e)
-}
-
-const count = ref(0)
-
-var input_type: string = "FormInput"
-var foobar: UI_schema_property = {
-  'asd': {
-    "foo": "bar"
-  }
+// var input_type: string = "FormInput"
+var ui_schema: UISchema = {
+  "order": {
+    "name": {
+      "element": "input",
+      "type": "string"
+    },
+    "products": {
+      "element": "select",
+      "options": [
+        {
+          "value": "foo"
+        },
+        {
+          "value": "bar"
+        }
+      ]
+    }
+  },
+  "properties": [
+    {
+      "product_name": "foo",
+      "properties": {
+        "element": "input",
+        "type": "int"
+      }
+    }
+  ]
 };
 </script>

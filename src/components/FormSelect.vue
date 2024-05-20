@@ -1,17 +1,16 @@
 <template>
     <div>
-        <label> number input </label>
-        <input type="number">
+        <label> select </label>
+        <input type="select">
     </div>
 </template>
 
 <script setup lang="ts">
-import type { PropType } from 'vue'
-import type { UISchemaProperty } from '../types/ui-schema';
 
 const props = defineProps({
     properties: Object as PropType<UISchemaProperty>
 })
+
 
 
 </script>

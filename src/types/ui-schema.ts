@@ -1,13 +1,29 @@
-export type UI_schema_property = {
-    [key: string]: UI_schema_property;
+import type { ListFormat } from "typescript"
+
+export type UISchema = {
+    "order": UISchemaProperty,
+    "products": UISchemaProdcut[]
 }
 
-class Prodcut{
-    product_name: string = ""
-    properties: UI_schema_property = {}
+export type UISchemaProdcut = {
+    "product_name": string,
+    "properties": UISchemaProperty
 }
 
-class UI_schema{
-    order: Object = {}
-    products: Prodcut[] = []
+export type UISchemaProperty = {
+    [key: string]: UISchemaProperty | string | boolean | number | any[] ;
 }
+
+
+
+
+
+// class Prodcut{
+//     product_name: string = ""
+//     properties: UISchemaProperty = {}
+// }
+
+// class UISchema{
+//     order: Object = {}
+//     products: Prodcut[] = []
+// }
