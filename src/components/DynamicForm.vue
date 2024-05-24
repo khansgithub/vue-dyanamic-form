@@ -1,17 +1,26 @@
 <template>
     <div>
         <fieldset name="order">
-            <!-- <div v-for="(fieldProperties, field) in schema.order" :key="field">
-                <label>{{ field }}</label>
-                <component :is='getComponent(fieldProperties.element)' :properties=fieldProperties>
-                </component>
-                    <label for="order_{{ field }}">{{ field }}</label>
-            </div> -->
-            <component v-for="(fieldProperties, field) in schema.order" :key="field" :is='getComponent(fieldProperties.element)' :properties=fieldProperties>
+            <component v-for="(fieldProperties, field) in props.schema.order"
+                :key="field"
+                :is='getComponent(fieldProperties.element)'
+                :properties=fieldProperties
+                name_prefix="order"
+                :field_name="field"
+            >
             </component>
         </fieldset>
         <fieldset name="product">
-
+            <template v-for=" properties_field in props.schema.properties">
+                <component v-for="(fieldProperties, field) in properties_field"
+                :key="field"
+                :is='getComponent(fieldProperties.element)'
+                :properties=fieldProperties
+                name_prefix="products"
+                :field_name="field"
+                >
+                </component>
+            </template>
         </fieldset>
     </div>
 </template>
@@ -32,13 +41,7 @@ const componentMap = {
 }
 
 function getComponent(componentName: string): FormInput|FormSelect {
-    console.log(componentName);
     return componentMap[componentName];
 }
-
-console.log(props.schema)
 </script>
 
-<script lang="ts">
-console.log(this)
-</script>
